@@ -97,18 +97,3 @@ extension ScannedMesh: Equatable {
         lhs.triangles.count == rhs.triangles.count
     }
 }
-        let faceDataSize: UInt64
-        switch format {
-        case .obj:
-            faceDataSize = UInt64(triangles.count) * 30
-            return 200 + vertexSize + faceDataSize
-        case .stl:
-            return 84 + UInt64(triangles.count) * 50
-        case .ply:
-            let headerSize: UInt64 = 200
-            let perVertex = 72
-            let perFace = 40
-            return headerSize + UInt64(vertices.count) * UInt64(perVertex) + UInt64(triangles.count) * UInt64(perFace)
-        }
-    }
-}
