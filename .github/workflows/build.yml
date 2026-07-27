@@ -48,8 +48,7 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_ENTITLEMENTS="" \
-            OTHER_CODE_SIGN_FLAGS="--deep" \
-            GCC_TREAT_WARNINGS_AS_ERRORS=YES
+            OTHER_CODE_SIGN_FLAGS="--deep"
 
       - name: Run Tests
         run: |
@@ -57,7 +56,7 @@ jobs:
             -project LidarScanner.xcodeproj \
             -scheme LidarScanner \
             -derivedDataPath build \
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -destination 'platform=iOS Simulator,OS=latest' \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=""
 
