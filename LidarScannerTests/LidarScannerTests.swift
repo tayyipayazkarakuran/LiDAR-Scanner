@@ -68,9 +68,9 @@ final class OBJExporterTests: XCTestCase {
 
         let content = try String(contentsOf: tempURL, encoding: .utf8)
         XCTAssertTrue(content.hasPrefix("# LidarScanner Export"))
-        XCTAssertTrue(content.contains("v 0 0 0"))
-        XCTAssertTrue(content.contains("v 1 0 0"))
-        XCTAssertTrue(content.contains("v 0 1 0"))
+        XCTAssertTrue(content.contains("v 0.0 0.0 0.0"))
+        XCTAssertTrue(content.contains("v 1.0 0.0 0.0"))
+        XCTAssertTrue(content.contains("v 0.0 1.0 0.0"))
         XCTAssertTrue(content.contains("f 1 2 3"))
 
         try FileManager.default.removeItem(at: tempURL)
@@ -96,7 +96,7 @@ final class OBJExporterTests: XCTestCase {
         try OBJExporter.export(mesh: mesh, to: tempURL)
 
         let content = try String(contentsOf: tempURL, encoding: .utf8)
-        XCTAssertTrue(content.contains("vn 0 0 1"))
+        XCTAssertTrue(content.contains("vn 0.0 0.0 1.0"))
         XCTAssertTrue(content.contains("f 1//1 2//2 3//3"))
 
         try FileManager.default.removeItem(at: tempURL)
