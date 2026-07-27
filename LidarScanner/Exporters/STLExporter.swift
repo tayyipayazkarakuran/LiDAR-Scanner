@@ -60,9 +60,11 @@ struct STLExporter: MeshExporter {
         data.append(Data(bytes: &z, count: 4))
     }
 
-    private static func calculateNormal(_ v0: SIMD3<Float>,
-                                         _ v1: SIMD3<Float>,
-                                         _ v2: SIMD3<Float>) -> SIMD3<Float> {
+    private static func calculateNormal(
+        _ v0: SIMD3<Float>,
+        _ v1: SIMD3<Float>,
+        _ v2: SIMD3<Float>
+    ) -> SIMD3<Float> {
         let edge1 = v1 - v0
         let edge2 = v2 - v0
         let normal = simd_cross(edge1, edge2)

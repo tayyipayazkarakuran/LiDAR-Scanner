@@ -57,11 +57,10 @@ class ARSessionManager: NSObject, ObservableObject {
 
 extension ARSessionManager: ARSessionDelegate {
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        for case let meshAnchor as ARMeshAnchor in anchors {
-            if !anchorSet.contains(meshAnchor.identifier) {
-                anchorSet.insert(meshAnchor.identifier)
-                meshAnchors.append(meshAnchor)
-            }
+        for case let meshAnchor as ARMeshAnchor in anchors
+            where !anchorSet.contains(meshAnchor.identifier) {
+            anchorSet.insert(meshAnchor.identifier)
+            meshAnchors.append(meshAnchor)
         }
     }
 

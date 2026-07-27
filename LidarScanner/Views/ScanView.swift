@@ -100,7 +100,7 @@ struct ScanView: View {
     private var controlButtons: some View {
         HStack(spacing: 40) {
             if !viewModel.isScanning {
-                Button(action: { viewModel.resetScan() }) {
+                Button { viewModel.resetScan() } label: {
                     VStack(spacing: 4) {
                         Image(systemName: "arrow.counterclockwise")
                             .font(.title2)
@@ -112,7 +112,7 @@ struct ScanView: View {
                 .disabled(viewModel.vertexCount == 0)
                 .opacity(viewModel.vertexCount == 0 ? 0.3 : 1)
 
-                Button(action: { viewModel.startScanning() }) {
+                Button { viewModel.startScanning() } label: {
                     VStack(spacing: 4) {
                         Image(systemName: "play.fill")
                             .font(.title)
@@ -127,7 +127,7 @@ struct ScanView: View {
                 }
                 .disabled(!viewModel.isLiDARAvailable)
 
-                Button(action: { viewModel.stopScanning() }) {
+                Button { viewModel.stopScanning() } label: {
                     VStack(spacing: 4) {
                         Image(systemName: "square.and.arrow.down")
                             .font(.title2)
@@ -141,7 +141,7 @@ struct ScanView: View {
             } else {
                 Spacer()
 
-                Button(action: { viewModel.stopScanning() }) {
+                Button { viewModel.stopScanning() } label: {
                     VStack(spacing: 4) {
                         Image(systemName: "stop.fill")
                             .font(.title)
