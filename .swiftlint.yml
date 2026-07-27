@@ -1,0 +1,16 @@
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+  - identifier_name
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+
+included:
+  - LidarScanner
+
+excluded:
+  - build
+  - LidarScannerTests
+  - LidarScannerUITests

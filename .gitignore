@@ -1,0 +1,23 @@
+# Xcode
+*.xcuserdata
+*.xcworkspace
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+build/
+DerivedData/
+
+# XcodeGen
+*.xcodeproj
+!LidarScanner.xcodeproj/
+
+# Swift Package Manager
+.build/
+Package.resolved
+
+# macOS
+.DS_Store
+
+# GitHub Actions
+*.log
