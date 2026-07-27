@@ -19,7 +19,6 @@ class ARSessionManager: NSObject, ObservableObject {
     }
 
     private func checkLiDARSupport() {
-        let config = ARWorldTrackingConfiguration()
         isLiDARAvailable = ARWorldTrackingConfiguration.supportsSceneReconstruction(.meshWithClassification)
     }
 

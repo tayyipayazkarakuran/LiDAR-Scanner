@@ -45,7 +45,12 @@ struct ScannedMesh {
             vertices.append(SIMD3<Float>(worldVertex.x, worldVertex.y, worldVertex.z))
 
             let localNormal = normalPointer[i]
-            let worldNormal = simd_mul(transform.linear, localNormal)
+            let rotationMatrix = simd_float3x3(
+                SIMD3<Float>(transform.columns.0.x, transform.columns.0.y, transform.columns.0.z),
+                SIMD3<Float>(transform.columns.1.x, transform.columns.1.y, transform.columns.1.z),
+                SIMD3<Float>(transform.columns.2.x, transform.columns.2.y, transform.columns.2.z)
+            )
+            let worldNormal = simd_mul(rotationMatrix, localNormal)
             normals.append(simd_normalize(worldNormal))
         }
 
@@ -70,6 +75,28 @@ struct ScannedMesh {
 
     func estimatedFileSize(format: ExportFormat) -> UInt64 {
         let vertexSize = UInt64(vertices.count) * 36
+        let faceDataSize: UInt64
+        switch format {
+        case .obj:
+            faceDataSize = UInt64(triangles.count) * 30
+            return 200 + vertexSize + faceDataSize
+        case .stl:
+            return 84 + UInt64(triangles.count) * 50
+        case .ply:
+            let headerSize: UInt64 = 200
+            let perVertex = 72
+            let perFace = 40
+            return headerSize + UInt64(vertices.count) * UInt64(perVertex) + UInt64(triangles.count) * UInt64(perFace)
+        }
+    }
+}
+
+extension ScannedMesh: Equatable {
+    static func == (lhs: ScannedMesh, rhs: ScannedMesh) -> Bool {
+        lhs.vertices.count == rhs.vertices.count &&
+        lhs.triangles.count == rhs.triangles.count
+    }
+}
         let faceDataSize: UInt64
         switch format {
         case .obj:

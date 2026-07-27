@@ -1,4 +1,5 @@
 import Foundation
+import simd
 
 struct STLExporter: MeshExporter {
     static func export(mesh: ScannedMesh, to url: URL) throws {
@@ -68,7 +69,7 @@ struct STLExporter: MeshExporter {
         let edge1 = v1 - v0
         let edge2 = v2 - v0
         let normal = simd_cross(edge1, edge2)
-        let length = simd_length(normal)
-        return length > 0 ? normal / length : SIMD3<Float>(0, 1, 0)
+        let len: Float = simd_length(normal)
+        return len > 0 ? normal / len : SIMD3<Float>(0, 1, 0)
     }
 }

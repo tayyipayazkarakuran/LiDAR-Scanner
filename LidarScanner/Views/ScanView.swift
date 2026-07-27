@@ -179,7 +179,7 @@ struct ARViewContainer: UIViewRepresentable {
         arView.session = sessionManager.session
         arView.automaticallyConfigureSession = false
         arView.debugOptions.insert(.showSceneUnderstanding)
-        arView.renderOptions.insert(.disableGroundShadows)
+        arView.renderOptions = []
 
         arView.environment.sceneUnderstanding.options = []
 

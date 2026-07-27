@@ -162,11 +162,12 @@ struct MeshPreviewContainer: UIViewRepresentable {
         let size = max(bounds.extents.x, bounds.extents.y, bounds.extents.z)
         let distance: Float = size * 2.5
 
+        let cameraPosition = SIMD3<Float>(0, bounds.center.y, distance)
         let camera = PerspectiveCamera()
         camera.camera.fieldOfViewInDegrees = 60
-        let cameraAnchor = AnchorEntity(world: SIMD3<Float>(0, bounds.center.y, distance))
+        camera.look(at: bounds.center, from: cameraPosition, upVector: SIMD3<Float>(0, 1, 0), relativeTo: nil)
+        let cameraAnchor = AnchorEntity(world: cameraPosition)
         cameraAnchor.addChild(camera)
-        camera.look(at: bounds.center, relativeTo: nil)
         arView.scene.addAnchor(cameraAnchor)
     }
 }
