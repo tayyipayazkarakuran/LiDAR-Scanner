@@ -132,7 +132,7 @@ final class STLExporterTests: XCTestCase {
         XCTAssertEqual(data.count, 134)
 
         let header = data.prefix(80)
-        let headerStr = String(data: header, encoding: .ascii)?.trimmingCharacters(in: .nullCharacterSet)
+        let headerStr = String(data: header, encoding: .ascii)?.trimmingCharacters(in: CharacterSet(charactersIn: "\0"))
         XCTAssertEqual(headerStr, "LidarScanner STL Export")
 
         let countData = data.subdata(in: 80..<84)
